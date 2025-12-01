@@ -106,6 +106,11 @@ class TestDataCleaner(unittest.TestCase):
         - Llamar a drop_invalid_rows con una columna que no existe (ej: "does_not_exist")
         - Verificar que se lanza un KeyError (usar self.assertRaises)
         """
+        cleaner = DataCleaner()
+        df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})
+
+        with self.assertRaises(KeyError):
+            cleaner.drop_invalid_rows(df, ["Z"])
 
     def test_trim_strings_strips_whitespace_without_changing_other_columns(self):
         """Test que verifica que el método trim_strings elimina correctamente los espacios
