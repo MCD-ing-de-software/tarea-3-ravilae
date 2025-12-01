@@ -179,6 +179,11 @@ class TestDataCleaner(unittest.TestCase):
         - Llamar a remove_outliers_iqr con una columna que no existe (ej: "salary")
         - Verificar que se lanza un KeyError (usar self.assertRaises)
         """
+        cleaner = DataCleaner()
+        df = pd.DataFrame({"val": [1, 2, 3]})
+
+        with self.assertRaises(KeyError):
+            cleaner.remove_outliers_iqr(df, "no_existe")
 
     def test_remove_outliers_iqr_raises_typeerror_for_non_numeric_column(self):
         """Test que verifica que el método remove_outliers_iqr lanza un TypeError cuando
